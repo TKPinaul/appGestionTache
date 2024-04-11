@@ -124,9 +124,6 @@ class _TacheAddState extends State<TacheAdd> {
       _showValidationError("Le titre est obligatoire.");
     } else if (_sousTaches.isEmpty) {
       _showValidationError("Au moins une sous-tâche doit être saisie.");
-    } else if (_sousTaches.contains(_autreInfoController.text)) {
-      _showValidationError(
-          "Cette sous-tâche existe déjà.");
     } else if (_selectedDate.isBefore(DateTime.now())) {
       _showValidationError(
           "La date d'échéance doit être supérieure à la date d'aujourd'hui.");
@@ -157,11 +154,16 @@ class _TacheAddState extends State<TacheAdd> {
       _showValidationError(
           "Veuillez renseigner une sous tache valide a effectuer.");
     } else {
-      setState(() {
-        _sousTaches.add(_autreInfoController.text);
-        _sousTachefait.add(false);
-        _updateIsComplete();
-      });
+      if (_sousTaches.contains(_autreInfoController.text)) {
+        _showValidationError(
+            "Cette sous-tâche existe déjà.");
+      } else {
+        setState(() {
+          _sousTaches.add(_autreInfoController.text);
+          _sousTachefait.add(false);
+          _updateIsComplete();
+        });
+      }
     }
     // Réinitialisation du TextField
     _autreInfoController.clear();

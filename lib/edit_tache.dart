@@ -90,11 +90,11 @@ class _TacheEditState extends State<TacheEdit> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {
-            widget.tache.isComplete = complet;
-          });
-          // Fermer l'écran d'édition et renvoyer la tache
-          Navigator.pop(context, widget.tache);
+          // setState(() {
+          //   widget.tache.isComplete = complet;
+          // });
+          // // Fermer l'écran d'édition et renvoyer la tache
+          // Navigator.pop(context, widget.tache);
         },
         child: Icon(
           Icons.save,
